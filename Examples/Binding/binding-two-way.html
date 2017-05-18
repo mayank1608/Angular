@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular JS two-way binding</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+	<!-- 
+	--introducing "ng-model" and check "ng-bind"
+	--demonstrates two-way binding
+	-->
+</head>
+<script type="text/javascript">
+	var app = angular.module("app", []);
+	app.controller("emp", ["$scope",function($scope){
+	$scope.a = 10;
+	$scope.b = 20;
+
+	$scope.doSum = function(){		
+		$scope.sum = parseInt($scope.a) + parseInt($scope.b);
+	};
+}]);
+</script>
+<body ng-app="app">
+	<div ng-controller="emp">
+		<div>
+			Value of a is {{a}}, 
+			but you can change <input type=text ng-model="a" /> <br>
+			
+			Value of b is {{b}}
+			but you can change <input type=text ng-model="b" /> <br>
+
+			Sum = {{sum}}
+		</div>
+		<button ng-click="doSum()">Calculate</button><br>
+		Value of a is {{::a}}<br>
+	</div>
+</body>
+</html>

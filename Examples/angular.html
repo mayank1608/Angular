@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<!-- 
+ng-app - directive tells AngularJS that the <div> element is the "owner" of an AngularJS application.
+ng-model - directive binds the value of the input field to the application variable name.
+ng-bind - directive binds the innerHTML of the <p> element to the application variable name.
+ng-controller - directive defines the application controller and control the data of AngularJS applications.
+ng-init - directive defines initial values for an AngularJS application.
+ng-repeat - directive actually clones HTML elements once for each item in a collection
+ -->
+
+<div ng-app="myApp" ng-init="myCol='lightblue'">
+
+  <p>Name : <input type="text" ng-model="name"></p>
+  <h1>Hello {{name}}</h1>
+  
+  <p>My first expression: {{ 5 + 5 }}</p>
+  
+  <input style="background-color:{{myCol}}" ng-model="myCol" value="{{myCol}}">
+  
+  <div ng-init="quantity=4;cost=5">
+	<p>Total in dollar: <span ng-bind="quantity * cost"></span></p>
+  </div> 
+
+
+
+	<div ng-controller="myCtrl">
+
+	First Name: <input type="text" ng-model="firstName"><br>
+	Last Name: <input type="text" ng-model="lastName"><br>
+	<br>
+	Full Name: {{firstName + " " + lastName}}
+
+	</div>
+</div>	
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl',["$scope",function($scope) {
+    $scope.firstName= "Mayank";
+    $scope.lastName= "Sharma";
+}]);
+</script>
+
+</body>
+</html>
