@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Angular Page</title>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<style>
+.ng-invalid.ng-dirty{border-color:red;}
+.ng-valid.ng-dirty{border-color:green;}
+</style>
+<body>
+<!--<h1 ng-app="name">NAME : <span ng-controller="NameController as name">{{name.myname.fname}} {{name.myname.lname}}</span></h1>-->
+<div class="container" ng-app="store">
+	<div ng-controller="StoreController as store">
+    	<div ng-repeat="product in store.products | orderBy:'-price'"><!--Without the - products would list in ascending order-->
+            <div class="panel panel-primary" ng-hide="product.soldOut">
+              <div class="panel-heading"><h2>{{product.name}} - {{product.price | currency:"&#8377;":3}} 
+              <span class="pull-right" ng-hide="product.canPurchase">Out of Stock</span></h2></div><!--currency gives the dollar sign (localized) -->     
+              <!--<div class="panel-body">
+                <div ng-class="{ 'col-md-12' : !product.images, 'col-md-10' : product.images}">
+                <h2>{{product.price | currency:"&#8377;":3}}</h2><!--currency gives the dollar sign (localized)      
+                <p>{{product.description}}</p>			
+                <button class="btn btn-success pull-right" ng-show="product.canPurchase">Add to Cart</button>
+                </div>
+                
+                <div class="col-md-2"><img class="pull-right img-responsive" ng-src="{{product.images[0].full}}"/></div>
+              </div>-->
+              
+              <!-- Product Tabs  -->
+              <product-tabs></product-tabs>    
+              
+            </div>
+        </div>
+	</div>
+    
+    <!--<section ng-controller="PanelController as panel">
+		<ul class="nav nav-pills">
+			<li ng-class="{ active: panel.isSelected(1)}">
+            	      <a href ng-click="panel.selectTab(1)">Description</a>   
+			</li>
+            <li ng-class="{ active: panel.isSelected(2)}">
+            	      <a href ng-click="panel.selectTab(2)">Specifications</a>   
+			</li>
+            <li ng-class="{ active: panel.isSelected(3)}">
+            	      <a href ng-click="panel.selectTab(3)">Reviews</a>   
+			</li>            
+        </ul>
+        <div class="panel" ng-show="panel.isSelected(1)">
+        	<h4>Description</h4>
+    		<p>{{product.description}}</p>
+        </div>
+    </section>-->                            
+</div>	
+
+<script type="text/javascript" src="js/angular.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>-->
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/product.js"></script>
+</body>
+</html>
